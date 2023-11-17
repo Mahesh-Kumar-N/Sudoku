@@ -1,6 +1,6 @@
 <div class="sudoku-container">
     <h1>Sudoku</h1>
-
+    <!-- Sudoku Grid -->
     <div class="sudoku-puzzle">
         <table>
             <tbody>
@@ -13,6 +13,9 @@
             </tbody>
         </table>
     </div>
+    <!-- Actiion Btn -->
     <button class="validate-button" (click)="validateSudokuPuzzle()">Validate</button>
-    <p [ngClass]="validationResult.error ? 'error': !validationResult.error ? 'success':''">{{ validationResult.msg }}</p>
+    <!-- Validation Msg -->
+    <p [ngClass]="validationResult.error ? 'error': !validationResult.error ? 'success':''">{{ validationResult.msg }}
+    </p>
 </div>
