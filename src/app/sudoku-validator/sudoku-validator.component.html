@@ -1,0 +1,18 @@
+<div class="sudoku-container">
+    <h1>Sudoku</h1>
+
+    <div class="sudoku-puzzle">
+        <table>
+            <tbody>
+                <tr *ngFor="let sudoku of sudokuPuzzle;let i = index;">
+                    <td *ngFor="let cell of sudoku;let j = index;">
+                        <input type="number" min="1" max="9" [ngModel]="sudokuPuzzle[i][j]"
+                            (ngModelChange)="onCellChange($event,i, j)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="validate-button" (click)="validateSudokuPuzzle()">Validate</button>
+    <p [ngClass]="validationResult.error ? 'error': !validationResult.error ? 'success':''">{{ validationResult.msg }}</p>
+</div>

@@ -1,0 +1,15 @@
+.sudoku-puzzle input {
+    width: 30px;
+}
+
+.validate-button {
+    margin-top: 15px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
