@@ -6,15 +6,31 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./sudoku-validator.component.css']
 })
 export class SudokuValidatorComponent implements OnInit {
+
+  /**
+   * Holds the message and a key to determine it is error or not. 
+   */
+  validationResult: {msg: string, error: boolean} = {
+    msg: '',
+    error: false
+  };
+
+  /**
+   * Holds the sudoku grid value.
+   */
   sudokuPuzzle: number[][] = [];
 
-  validationResult: {msg: string, error: boolean} = {
-    msg: '', error: false
-  };
+  /**
+   * Hold the original sudoku grid value.
+   */
   orginalSudoku: number[][] = [];
 
   constructor() {}
 
+  /**
+   * The ngOnInit function initializes a Sudoku puzzle by creating a 9x9 grid and filling it with either
+   * empty cells, valid values, or invalid values.
+   */
   ngOnInit(): void {
     //  Initialize the Sudoku puzzle with empty cells
     for (let i = 0; i < 9; i++) {
@@ -33,6 +49,12 @@ export class SudokuValidatorComponent implements OnInit {
     this.orginalSudoku = JSON.parse(JSON.stringify(this.sudokuPuzzle));
   }
 
+  /**
+   * The function `validateSudokuPuzzle` checks if a given Sudoku puzzle is valid by ensuring that each
+   * row, column, and 3x3 subgrid contains the numbers 1 to 9 without repetition.
+   * @returns The function does not return a value. Instead, it sets the `validationResult` property of
+   * the object to indicate whether the Sudoku puzzle is valid or not.
+   */
   validateSudokuPuzzle(): void {
     // Check if each row contains the numbers 1 to 9 without repetition
     for (let row = 0; row < 9; row++) {
@@ -100,6 +122,13 @@ export class SudokuValidatorComponent implements OnInit {
     };
   }
 
+  /**
+   * The function `onCellChange` updates the Sudoku puzzle with the entered number if it is between 1 and
+   * 9, otherwise it resets the puzzle to its original state.
+   * @param {number} enteredNum - The entered number for the Sudoku cell.
+   * @param {number} i - The parameter "i" represents the row index of the cell in the Sudoku grid.
+   * @param {number} j - The parameter "j" represents the column index of the cell in the Sudoku grid.
+   */
   onCellChange(enteredNum: number, i: number, j: number) {
     this.validationResult = {
       msg: '',
@@ -113,10 +142,23 @@ export class SudokuValidatorComponent implements OnInit {
     }
   }
 
+  /**
+   * The trackByIndex function returns the index value.
+   * @param {number} index - The `index` parameter is a number that represents the position of an item in
+   * a list or array. It is commonly used in Angular applications when using the `ngFor` directive to
+   * iterate over a collection of items and display them in a template. The `trackByIndex` function is
+   * used to
+   * @returns The index value.
+   */
+
   trackByIndex(index: number): number {
     return index;
   }
 
+  /**
+   * The function returns a valid Sudoku grid.
+   * @returns a valid Sudoku grid represented as a 2D array of numbers.
+   */
   getValidSudoku(): number[][] {
     return [
       [5, 3, 4, 6, 7, 8, 9, 1, 2],
@@ -131,6 +173,10 @@ export class SudokuValidatorComponent implements OnInit {
     ];
   }
 
+  /**
+   * The function returns an invalid Sudoku grid.
+   * @returns a 2D array representing an invalid Sudoku puzzle.
+   */
   getInValidSudoKu(): number[][] {
     return [
       [8, 2, 4, 7, 5, 9, 3, 1, 6],
@@ -142,6 +188,6 @@ export class SudokuValidatorComponent implements OnInit {
       [4, 6, 5, 1, 8, 3, 7, 9, 2],
       [2, 8, 1, 3, 9, 7, 6, 5, 4],
       [3, 9, 7, 2, 4, 5, 8, 1, 6]
-    ]
+    ];
   }
 }
